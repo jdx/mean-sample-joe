@@ -96,8 +96,11 @@ angular.module('app')
 })
 angular.module('app')
 .run(function ($rootScope, $timeout) {
+  function websocketHost() {
+    return 'ws://' + window.location.host
+  }
   (function connect() {
-    var url = 'ws://localhost:3000'
+    var url = websocketHost()
     var connection = new WebSocket(url)
     connection.onclose = function (e) {
       console.log('WebSocket closed. Reconnecting...')
